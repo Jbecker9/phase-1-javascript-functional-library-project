@@ -1,7 +1,18 @@
-function myEach(arrayOne, callback){
-    let newArray = arrayOne
-    for(let i = 0; i < newArray.length; i++){
-        callback(newArray[i])
+function myEach(collection, callback){
+
+    let newArr = []
+
+    // if collection is an object 
+    if(typeof collection === 'object'){
+    // turn collection into arr
+        newArr = Object.values(collection)
+    } else {
+        newArr = [...collection]
     }
-    return arrayOne
+        
+
+    for(let i = 0; i < newArr.length; i++){
+        callback(newArr[i])
+    }
+    return collection
 }
