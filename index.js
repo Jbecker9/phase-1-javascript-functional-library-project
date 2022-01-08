@@ -29,7 +29,7 @@ function myMap(collection, callback){
     return newCollection
 }
 
-function myReduce(collection, callback){
+function myReduce(collection, callback, acc){
     let reduceArray = []
     if(typeof collection === 'object'){
         reduceArray = Object.values(collection)
@@ -37,6 +37,12 @@ function myReduce(collection, callback){
     else{
         reduceArray = [...collection]
     }
-    console.log(reduceArray)
-    console.log(reduceArray.reduce((a,b) => callback(a + b)))
+    if(!acc){
+        acc = reduceArray[0]
+        reduceArray.shift()
+    }
+    for(let i = 0; i < reduceArray.length; i++){
+       acc = callback(acc, reduceArray[i], reduceArray)
+    }
+    return acc
 }
