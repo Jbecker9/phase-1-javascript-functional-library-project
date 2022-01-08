@@ -16,3 +16,27 @@ function myEach(collection, callback){
     }
     return collection
 }
+
+function myMap(collection, callback){
+    let objArray = []
+    if(typeof collection === 'object'){
+        objArray = Object.values(collection)
+    }
+    else{
+        objArray = [...collection]
+    }
+    let newCollection = objArray.map(element => callback(element))
+    return newCollection
+}
+
+function myReduce(collection, callback){
+    let reduceArray = []
+    if(typeof collection === 'object'){
+        reduceArray = Object.values(collection)
+    }
+    else{
+        reduceArray = [...collection]
+    }
+    console.log(reduceArray)
+    console.log(reduceArray.reduce((a,b) => callback(a + b)))
+}
